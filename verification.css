@@ -1,0 +1,23 @@
+.code-background {
+  width: 300px;height: 187px;background-position: 0 0;background-size: contain;background-repeat: no-repeat;
+}
+
+.code-screenshot {
+  position: absolute;left: 0;top: 0;width: 54px;height: 54px;background-position: 0 0;background-size: contain;background-repeat: no-repeat;
+}
+
+.code-drag {
+  position:relative;width:300px;height:36px;background:#eee;
+}
+
+.code-left {
+  width:0;height:36px;background-color:#9ab2e1;float:left;
+}
+
+.code-range {
+  width:300px;height:36px;position:absolute;left:0;cursor:move;text-align:center;background-color:#fff;user-select:none;color:#666;opacity:.15;
+}
+
+.code-again {
+  position:absolute;top:0;right:0;width:48px;min-width:48px;font-size:12px;text-align:center;line-height:36px;color:#fff;background-color:#999;display:none;cursor:pointer;
+}
