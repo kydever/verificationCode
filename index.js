@@ -1,7 +1,7 @@
 // 跟节点样式.
 const el_css = `width: 300px;margin: 0 auto;position: relative;box-sizing: border-box;overflow: hidden;`;
 // 样式引入.
-import "./verification.css"
+import './verification.css';
 
 class verificationCode {
   constructor(el, _params) {
@@ -13,18 +13,18 @@ class verificationCode {
       bgHeight: _params.bgHeight || 702,
       Api: _params.api, // 请求
       shotWidth: _params.shotWidth || 200,
-      shotHeight: _params.shotHeight || 200 
-    }
+      shotHeight: _params.shotHeight || 200,
+    };
 
     // 单位换算- 300是验证码背景图展示宽度.
     this.unitSize = this.params.bgWidth / 300;
     // 根节点
-    this.el = document.getElementById(el); 
-    this.el.style = el_css + `height: ${this.params.bgHeight/ this.unitSize + 36}px`;
+    this.el = document.getElementById(el);
+    this.el.style = el_css + `width: 300px; height: ${this.params.bgHeight / this.unitSize + 36}px`;
     // 绑定监听事件对象。
     this.temp = {};
-    
-    console.log(this.unitSize, "unitSize")
+
+    console.log(this.unitSize, 'unitSize');
     // 验证码背景大小
     this.drag = {
       x: 0, // X轴坐标.
@@ -61,6 +61,10 @@ class verificationCode {
     //获取滑块的宽度.
     this.gapWidth = parseInt(window.getComputedStyle(gap, null)['width']);
 
+    ipt.style.height = '36px';
+    btn.style.height = '36px';
+    btn.style.lineHeight = '36px';
+    btn.style.fontSize = '12px';
     // 绑定重定按钮
     btn.addEventListener('click', () => {
       if (this.verification_code) return;
@@ -109,7 +113,7 @@ class verificationCode {
         x: this.drag.x * this.unitSize,
       }
     );
-    this.params.Api.post(this.postUrl, params).then((response) => {
+    this.params.Api.post(this.params.postUrl, params).then((response) => {
       // 请求成功
       const { status, result } = response.data;
       if (status == 'success') {
@@ -123,7 +127,7 @@ class verificationCode {
 
   // 获取验证码信息
   getCaptureInfo() {
-    this.params.Api.get(this.getUrl).then((response) => {
+    this.params.Api.get(this.params.getUrl).then((response) => {
       const { status, result } = response.data;
       if (status == 'success') {
         this.drag.id = result.id; // 验证码
@@ -132,6 +136,8 @@ class verificationCode {
         this.temp.box.style.backgroundImage = 'url(' + result.bg + ')';
         // 验证码截图.
         this.temp.gap.style.backgroundImage = 'url(' + result.dg + ')';
+        this.temp.box.style.width = Math.ceil(this.params.bgWidth / this.unitSize) + 'px';
+        this.temp.box.style.height = Math.ceil(this.params.bgHeight / this.unitSize) + 'px';
         // 验证码截图样式设置.
         this.temp.gap.style.width = Math.ceil(this.params.shotWidth / this.unitSize) + 'px';
         this.temp.gap.style.height = Math.ceil(this.params.shotHeight / this.unitSize) + 'px';

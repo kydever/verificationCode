@@ -1,6 +1,6 @@
 {
   "name": "@kydev/verification-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "滑动拼图验证码",
   "main": "index.js",
   "scripts": {
