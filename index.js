@@ -1,19 +1,31 @@
-// 样式.
-const el_css = `width: 300px;height: 225px;margin: 0 auto;position: relative;box-sizing: border-box;overflow: hidden;`;
-
+// 跟节点样式.
+const el_css = `width: 300px;margin: 0 auto;position: relative;box-sizing: border-box;overflow: hidden;`;
+// 样式引入.
 import "./verification.css"
 
 class verificationCode {
-  constructor(el, params) {
-    this.getUrl = params.getUrl
-    this.postUrl = params.postUrl
-    this.el = document.getElementById(el); // 根节点
-    this.Api = params.api; // 请求
-    this.el.style = el_css;
+  constructor(el, _params) {
+    // params
+    this.params = {
+      getUrl: _params.getUrl,
+      postUrl: _params.postUrl,
+      bgWidth: _params.bgWidth || 1125,
+      bgHeight: _params.bgHeight || 702,
+      Api: _params.api, // 请求
+      shotWidth: _params.shotWidth || 200,
+      shotHeight: _params.shotHeight || 200 
+    }
+
+    // 单位换算- 300是验证码背景图展示宽度.
+    this.unitSize = this.params.bgWidth / 300;
+    // 根节点
+    this.el = document.getElementById(el); 
+    this.el.style = el_css + `height: ${this.params.bgHeight/ this.unitSize + 36}px`;
+    // 绑定监听事件对象。
     this.temp = {};
-    // 单位换算- 验证码的坐标信息 1125 * 702, 展示固定大小 300 * 187
-    this.unitSize = 1125 / 300;
-    // 验证码背景大小  11
+    
+    console.log(this.unitSize, "unitSize")
+    // 验证码背景大小
     this.drag = {
       x: 0, // X轴坐标.
       y: 0, // Y轴坐标.
@@ -97,7 +109,7 @@ class verificationCode {
         x: this.drag.x * this.unitSize,
       }
     );
-    this.Api.post(this.postUrl, params).then((response) => {
+    this.params.Api.post(this.postUrl, params).then((response) => {
       // 请求成功
       const { status, result } = response.data;
       if (status == 'success') {
@@ -111,13 +123,18 @@ class verificationCode {
 
   // 获取验证码信息
   getCaptureInfo() {
-    this.Api.get(this.getUrl).then((response) => {
+    this.params.Api.get(this.getUrl).then((response) => {
       const { status, result } = response.data;
       if (status == 'success') {
         this.drag.id = result.id; // 验证码
         this.drag.y = result.y; //纵向坐标周
+        // 背景图
         this.temp.box.style.backgroundImage = 'url(' + result.bg + ')';
+        // 验证码截图.
         this.temp.gap.style.backgroundImage = 'url(' + result.dg + ')';
+        // 验证码截图样式设置.
+        this.temp.gap.style.width = Math.ceil(this.params.shotWidth / this.unitSize) + 'px';
+        this.temp.gap.style.height = Math.ceil(this.params.shotHeight / this.unitSize) + 'px';
         this.temp.gap.style.top = Math.floor(result.y / this.unitSize) + 'px';
       } else {
         alert('请求验证码失败～');
