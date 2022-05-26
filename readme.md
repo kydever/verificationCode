@@ -32,6 +32,8 @@ const verification = new verificationCode(el, {
   api: axios // 接口请求方式.
 })
 
-//verification_code 验证成功返回的code 如果为空则校验失败
-console.log(verification.verification_code)
+// 验证成功返回的code
+verification.codeCallBack().then((code) => {
+  console.log(code, "返回的code");
+});
 ```

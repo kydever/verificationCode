@@ -1,5 +1,6 @@
 // 样式引入.
 import './verification.css';
+import { eventEmitter, eventListener } from './emiter-js/index';
 
 class verificationCode {
   constructor(el, _params) {
@@ -136,6 +137,7 @@ class verificationCode {
       if (status == 'success') {
         this.verification_code = result.code;
         this.closed();
+        eventEmitter.emit('verificationCodeNum', this.verification_code);
       } else {
         this.temp.success.style.opacity = 1;
         const img =
@@ -158,6 +160,20 @@ class verificationCode {
       this.el.innerHTML = '';
       this.durationTime = 0;
     }, 1 * 1000);
+  }
+  // 抛出校验码
+  codeCallBack() {
+    return new Promise((reslove, reject) => {
+      eventListener.on('verificationCodeNum', (e) => {
+        try {
+          if (e) {
+            return reslove(e);
+          }
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
   }
 
   // 获取验证码信息
