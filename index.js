@@ -82,6 +82,7 @@ class verificationCode {
     // 绑定关闭按钮.
     closed.addEventListener('click', () => {
       this.el.style.display = 'none';
+      eventEmitter.emit('verificationCodeNum', this.verification_code);
     });
 
     // 绑定重试按钮
@@ -166,11 +167,9 @@ class verificationCode {
     return new Promise((reslove, reject) => {
       eventListener.on('verificationCodeNum', (e) => {
         try {
-          if (e) {
-            return reslove(e);
-          }
+          return reslove(e);
         } catch (error) {
-          reject(error);
+          return reject(error);
         }
       });
     });
