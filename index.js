@@ -52,7 +52,7 @@ class verificationCode {
         <div class="code-drag">
             <div class="code-left"></div>
             <div class="code-range-before"></div>
-            <input type="range" class="code-range" value="0">
+            <input type="range" class="code-range" value="8">
           </div>
         <div class="code-btn-cntr">
           <div class="code-again" title="重试"></div>
