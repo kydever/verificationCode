@@ -109,7 +109,7 @@
 	background-color: #1A1A1A;
 	user-select: none;
 	z-index: 9;
-	opacity: 0;
+	opacity: 0.01;
 	border: 1px solid black;
 }
 .code-drag .code-range-before {
