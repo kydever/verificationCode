@@ -122,6 +122,13 @@ class verificationCode {
 
     // 获取验证码信息
     this.getCaptureInfo();
+    document.addEventListener(
+      'touchmove',
+      function (event) {
+        event.preventDefault();
+      },
+      false
+    );
   }
   // 触发请求.
   sumbitReq() {
