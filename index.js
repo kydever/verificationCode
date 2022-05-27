@@ -90,7 +90,7 @@ class verificationCode {
       ipt.value = 0;
       ipt.disabled = false;
       gap.style.left = '13px';
-      left.style.width = '52px';
+      left.style.width = '68px';
       this.getCaptureInfo();
       this.temp.success.style.opacity = 0;
       this.temp.icon.style.backgroundImage = '';

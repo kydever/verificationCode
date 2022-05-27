@@ -80,13 +80,14 @@
 	margin-top: 6px;
 	position: relative;
 	width: 100%;
-	height: 36px;
+	height: 48px;
 }
 
 .code-drag .code-left {
 	position: relative;
-	width: 52px;
-	height: 36px;
+	width: 68px;
+	height: 48px;
+	min-width: 68px;
 	float: left;
 	background-image: url("https://cdn-public.knowyourself.cc/kyapp_vest_post/2022/05/26/2d777d52bde94ac0b2cf595074a68313---136x96.png");
 	 background-position: center right;
@@ -100,21 +101,22 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 36px;
+	height: 48px;
 	position: absolute;
 	left: 0;
 	cursor: move;
 	text-align: center;
 	background-color: #1A1A1A;
 	user-select: none;
-	z-index: 3;
+	z-index: 9;
 	opacity: 0;
+	border: 1px solid black;
 }
 .code-drag .code-range-before {
 	position: absolute;
 	width: 100%;
-	top: 14px;
-	height: 6px;
+	top: 18px;
+	height: 8px;
 	background: #E6E6E6;
 	border-radius: 4px;
 	z-index: 1;
@@ -122,24 +124,24 @@
 
 
 .code-btn-cntr {
-	margin-top: 12px;
+	margin-top: 8px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 }
 
 .code-btn-cntr .code-again {
-	width: 22px;
-	height: 18px;
+	width: 24px;
+	height: 24px;
 	cursor: pointer;
-	background: url("https://cdn-public.knowyourself.cc/kyapp_vest_post/2022/05/26/1ffdb1ee154540b1a87944c00f0dded4---48x48.png") no-repeat center right;
+	background: url("https://cdn-public.knowyourself.cc/kyapp_vest_post/2022/05/26/1ffdb1ee154540b1a87944c00f0dded4---48x48.png") no-repeat center center;
 	background-size: contain;
 }
 
 .code-btn-cntr .code-closed {
-	width: 18px;
-	height: 18px;
+	width: 24px;
+	height: 24px;
 	cursor: pointer;
-	background: url("https://cdn-public.knowyourself.cc/kyapp_vest_post/2022/05/26/3ccf36a9e0bd4651b89c89f4e0aed376---48x48.png") no-repeat center right;
+	background: url("https://cdn-public.knowyourself.cc/kyapp_vest_post/2022/05/26/3ccf36a9e0bd4651b89c89f4e0aed376---48x48.png") no-repeat center center;
 	background-size: contain;
 }
