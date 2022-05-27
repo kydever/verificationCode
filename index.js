@@ -87,7 +87,7 @@ class verificationCode {
 
     // 绑定重试按钮
     btn.addEventListener('click', () => {
-      ipt.value = 0;
+      ipt.value = 8;
       ipt.disabled = false;
       gap.style.left = '13px';
       left.style.width = '68px';
